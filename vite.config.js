@@ -12,4 +12,11 @@ export default defineConfig({
       },
     },
   },
+
+  server: {
+    port:process.env.PORT || 5173, // Use the Render-provided port or fallback
+    host: true, // Expose the server to the network
+  },
 });
+
+
