@@ -1,4 +1,4 @@
-import { loadHeaderFooter, mobileMenuToggle } from "../../../MindfulnessApp/src/js/utils.mjs"
+import { loadHeaderFooter, mobileMenuToggle } from "./utils.mjs"
 import { navigationMenu } from "./navigation.mjs"
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -7,3 +7,5 @@ document.addEventListener("DOMContentLoaded", () => {
     navigationMenu();
   });
 })
+
+
