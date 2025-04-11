@@ -1,41 +1,37 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta charset="UTF-8">
-  <title>HomePage</title>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <title>HomePage</title>
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="css/style.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header id="site-header"></header>
 
-</head>
-<body>
-<header id="site-header">
+    <main>
+      <div class="main-body-container">
+        <div class="main-ui-container">
+          <div id="interactive-container">
+            <h1>Dashboard</h1>
+            <div class="userDashboard">
+              <h2>Welcome {first name}</h2>
+              <p id="lastLogin">Last Login:</p>
+              <p id="pointEarned">Your Points:</p>
+              <p id="upliftingQuote">{Uplifitng quote to be placed here}</p>
+            </div>
+          </div>
+        </div>
 
-</header>
-
-<main>
-  <div class="main-dashboard-container">
-    <div id="dashboard">
-      <h1>Dashboard</h1>
-      <div class="userDashboard">
-        <h2>Welcome {first name}</h2>
-        <p id="lastLogin">Last Login: </p>
-        <p id="pointEarned">Your Points: </p>
-        <p id="upliftingQuote">{Uplifitng quote to be placed here}</p>
+        <div id="navigationMenu"></div>
       </div>
-    </div>
-  </div>
+    </main>
 
-  <div id="navigationMenu"></div>
-</main>
+    <footer id="site-footer"></footer>
 
-<footer id="site-footer">
-
-</footer>
-
-<!-- JAVASCRIPT -->
-
-</body>
-<script src="js/main.js" type="module" defer></script>
+    <!-- JAVASCRIPT -->
+  </body>
+  <script src="js/main.js" type="module" defer></script>
 </html>
