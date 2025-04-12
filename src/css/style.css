@@ -14,8 +14,8 @@
 }
 
 * {
-  margin:0;
-  padding:0;
+  margin: 0;
+  padding: 0;
 }
 
 a {
@@ -140,7 +140,6 @@ button:focus-visible {
 }
 
 .login {
-
   margin-right: 3em;
 }
 
@@ -341,16 +340,16 @@ div#interactive-container {
   border-radius: 5px;
   text-align: center;
 
-  display:flex;
-  flex-direction:column;
-  justify-content:space-evenly;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 
   position: relative;
-  top:50%;
-  left:50%;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
   width: 50%;
-  height:50%;
+  height: 50%;
 }
 
 /* End of Main CSS */
