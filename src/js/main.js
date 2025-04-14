@@ -12,8 +12,10 @@ document.addEventListener("DOMContentLoaded", () => {
     zenQuoteGeneration();
     setupLogoutButton();
     onAuthStateChanged(auth, (user) => {
-      if (user) {
+      const username = document.querySelector("#loggedInUsersName");
+      if (user && user.displayName) {
         console.log("User is signed in:", user);
+        username.innerText = user.displayName;
 
       } else {
         // alert("You must be logged in to view this page.");

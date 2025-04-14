@@ -2,6 +2,8 @@ import { auth } from "./firebase.js";
 import {createUserWithEmailAndPassword} from "firebase/auth";
 import {signInWithEmailAndPassword} from "firebase/auth";
 import { signOut } from "firebase/auth";
+import { updateProfile } from "firebase/auth";
+
 
 
 const signupForm = document.getElementById("signUpForm");
@@ -100,6 +102,12 @@ function getLoginFormErrors(email, password) {
 async function handleSignup(email, password) {
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
+
+    await updateProfile(user, {
+      displayName: firstname_input.value,
+    });
+
     console.log("User signed up:", userCredential.user);
     alert("Signup successful! You can now log in.");
     window.location.href = "../login/index.html";
@@ -159,4 +167,13 @@ export function setupLogoutButton() {
        });
     })
   }
+}
+
+export function populateUsersName() {
+  const username = document.querySelector("loggedInUsersName");
+  onAuthStateChanged(auth, (user) => {
+    if (user && user.displayName) {
+      username.innerText = user.displayName;
+    }
+  })
 }
