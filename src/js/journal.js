@@ -1,6 +1,5 @@
 import { loadHeaderFooter, mobileMenuToggle, modalToggle } from "./utils.mjs";
 import { navigationMenu } from "./navigation.mjs";
-import zenQuoteGeneration from "./zenquote.mjs";
 import { setupLogoutButton } from "./validation.js";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase.js";

@@ -100,6 +100,13 @@ button:focus-visible {
   }
 }
 
+.zen-maru-gothic-regular {
+  font-family: "Zen Maru Gothic", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
 /* Start of Header CSS */
 
 .desktopView {
@@ -252,6 +259,26 @@ main {
   border: 2px #55969e solid;
   border-radius: 5px;
   background: #d6f0f5;
+
+  position:relative;
+}
+
+#upliftingQuote {
+  position: absolute;
+  bottom:0;
+
+  margin:1em;
+
+  animation: fadeIn 2s ease-in forwards;
+  opacity:0;
+  transform: translateY(20px);
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 div#interactive-container {

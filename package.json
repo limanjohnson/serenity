@@ -38,6 +38,7 @@
     "last 3 safari versions"
   ],
   "dependencies": {
+    "@google/genai": "^0.8.0",
     "firebase": "^11.6.0"
   }
 }
