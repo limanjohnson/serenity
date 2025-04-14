@@ -144,17 +144,19 @@ allInputs.forEach((input) => {
 });
 
 export function setupLogoutButton() {
-  const logoutButton = document.getElementById("logoutButton");
-  if (logoutButton) {
-    logoutButton.addEventListener("click", async () => {
-     try {
-        await signOut(auth);
-        // alert("You have logged out successfully.");
-        window.location.href = "../login/index.html";
-      } catch (error) {
-        console.error("Error signing out:", error.message);
-        alert("An error occurred while logging out. Please try again.");
-      }
-    });
+  const logoutButtons = document.querySelectorAll(".logoutButton");
+  if (logoutButtons.length > 0) {
+    logoutButtons.forEach((logoutButton) => {
+      logoutButton.addEventListener("click", async () => {
+        try {
+           await signOut(auth);
+           // alert("You have logged out successfully.");
+           window.location.href = "../login/index.html";
+         } catch (error) {
+           console.error("Error signing out:", error.message);
+           alert("An error occurred while logging out. Please try again.");
+         }
+       });
+    })
   }
 }
