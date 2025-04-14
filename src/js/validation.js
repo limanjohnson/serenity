@@ -1,11 +1,16 @@
-const form = document.getElementById("signUpForm");
+import { auth } from "./firebase.js";
+import {createUserWithEmailAndPassword} from "firebase/auth";
+import {signInWithEmailAndPassword} from "firebase/auth";
+
+const signupForm = document.getElementById("signUpForm");
+const loginForm = document.getElementById("loginForm");
 const firstname_input = document.getElementById("firstname-input");
 const email_input = document.getElementById("email-input");
 const password_input = document.getElementById("password-input");
 const repeat_password_input = document.getElementById("repeat-password-input");
 const error_message = document.getElementById("error-message");
 
-form.addEventListener("submit", (e) => {
+signupForm.addEventListener("submit", (e) => {
   // e.preventDefault(); Prevent Submit
 
   let errors = [];
@@ -87,4 +92,43 @@ function getLoginFormErrors(email, password) {
     password_input.parentElement.classList.add("incorrect");
   }
   return errors;
+}
+
+if (signupForm) {
+  signupForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const email = email_input.value;
+    const password = password_input.value;
+
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      console.log("User signed up:", userCredential.user);
+      alert("Signup successful! You can now log in.");
+      window.location.href = "../login/index.html";
+
+    } catch (error) {
+      console.error("Error signing up:", error.message);
+      alert(error.message);
+    }
+  });
+}
+
+if (loginForm) {
+  loginForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const email = email_input.value;
+    const password = password_input.value;
+
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      console.log("User signed in:", userCredential.user);
+      alert("Login successful!");
+      window.location.href = "../profile/index.html";
+    } catch (error) {
+      console.error("Error signing in:", error.message);
+      error_message.innerText = error.message;
+    }
+  });
 }
