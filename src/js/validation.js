@@ -1,6 +1,8 @@
 import { auth } from "./firebase.js";
 import {createUserWithEmailAndPassword} from "firebase/auth";
 import {signInWithEmailAndPassword} from "firebase/auth";
+import { signOut } from "firebase/auth";
+
 
 const signupForm = document.getElementById("signUpForm");
 const loginForm = document.getElementById("loginForm");
@@ -10,29 +12,45 @@ const password_input = document.getElementById("password-input");
 const repeat_password_input = document.getElementById("repeat-password-input");
 const error_message = document.getElementById("error-message");
 
-signupForm.addEventListener("submit", (e) => {
-  // e.preventDefault(); Prevent Submit
+// 
 
-  let errors = [];
-
-  if (firstname_input) {
-    // if we have a firstname input, then we are in the signup
-    errors = getSignupFormErrors(
-      firstname_input.value,
-      email_input.value,
-      password_input.value,
-      repeat_password_input.value,
-    );
-  } else {
-    // if we dont have firstname input, then we are in the login
-    errors = getLoginFormErrors(email_input.value, password_input.value);
-  }
-
-  if (errors.length > 0) {
+if (signupForm) {
+  signupForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    error_message.innerText = errors.join("\n");
-  }
-});
+
+    let errors = getSignupFormErrors(
+      firstname_input?.value || "",
+      email_input?.value || "",
+      password_input?.value || "",
+      repeat_password_input?.value || ""
+    );
+
+    if (errors.length > 0) {
+      error_message.innerText = errors.join("\n");
+      return;
+    }
+
+     // Proceed with Firebase signup
+     handleSignup(email_input.value, password_input.value);
+  });
+}
+
+// Handle login form submission
+if (loginForm) {
+  loginForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    let errors = getLoginFormErrors(email_input?.value || "", password_input?.value || "");
+
+    if (errors.length > 0) {
+      error_message.innerText = errors.join("\n");
+      return;
+    }
+
+    // Proceed with Firebase login
+    handleLogin(email_input.value, password_input.value);
+  });
+}
 
 function getSignupFormErrors(firstname, email, password, repeat_password) {
   let errors = [];
@@ -64,6 +82,51 @@ function getSignupFormErrors(firstname, email, password, repeat_password) {
   return errors;
 }
 
+function getLoginFormErrors(email, password) {
+  let errors = [];
+
+  if (email === "" || email === null) {
+    errors.push("Email is required");
+    email_input.parentElement.classList.add("incorrect");
+  }
+  if (password === "" || password === null) {
+    errors.push("Password is required");
+    password_input.parentElement.classList.add("incorrect");
+  }
+  return errors;
+}
+
+// handle signup
+async function handleSignup(email, password) {
+  try {
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    console.log("User signed up:", userCredential.user);
+    alert("Signup successful! You can now log in.");
+    window.location.href = "../login/index.html";
+  } catch (error) {
+    console.error("Error signing up:", error.message);
+    alert(error.message);
+  }
+}
+
+// handle login
+async function handleLogin(email, password) {
+  try {
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    console.log("User signed in:", userCredential.user);
+    // alert("Login successful!");
+    window.location.href = "../index.html";
+  } catch (error) {
+    console.error("Error signing in:", error.message);
+
+    // Map Firebase error codes to user-friendly messages
+    let errorMessage = "Incorrect username or password.";
+
+    // Display the custom error message
+    error_message.innerText = errorMessage;
+  }
+}
+
 const allInputs = [
   firstname_input,
   email_input,
@@ -80,55 +143,18 @@ allInputs.forEach((input) => {
   });
 });
 
-function getLoginFormErrors(email, password) {
-  let errors = [];
-
-  if (email === "" || email === null) {
-    errors.push("Email is required");
-    email_input.parentElement.classList.add("incorrect");
+export function setupLogoutButton() {
+  const logoutButton = document.getElementById("logoutButton");
+  if (logoutButton) {
+    logoutButton.addEventListener("click", async () => {
+     try {
+        await signOut(auth);
+        // alert("You have logged out successfully.");
+        window.location.href = "../login/index.html";
+      } catch (error) {
+        console.error("Error signing out:", error.message);
+        alert("An error occurred while logging out. Please try again.");
+      }
+    });
   }
-  if (password === "" || password === null) {
-    errors.push("Password is required");
-    password_input.parentElement.classList.add("incorrect");
-  }
-  return errors;
-}
-
-if (signupForm) {
-  signupForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const email = email_input.value;
-    const password = password_input.value;
-
-    try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      console.log("User signed up:", userCredential.user);
-      alert("Signup successful! You can now log in.");
-      window.location.href = "../login/index.html";
-
-    } catch (error) {
-      console.error("Error signing up:", error.message);
-      alert(error.message);
-    }
-  });
-}
-
-if (loginForm) {
-  loginForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const email = email_input.value;
-    const password = password_input.value;
-
-    try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      console.log("User signed in:", userCredential.user);
-      alert("Login successful!");
-      window.location.href = "../profile/index.html";
-    } catch (error) {
-      console.error("Error signing in:", error.message);
-      error_message.innerText = error.message;
-    }
-  });
 }
