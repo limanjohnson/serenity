@@ -27,7 +27,9 @@ class ListingActivity extends Activity {
         activityContainer.innerHTML = `
         <h2>${this.getName()}</h2>
         <p>${prompt}</p>
+        <div class="textbox">
         <textarea id="userResponses" placeholder="Start listing your responses here..."></textarea>
+        <div>
         <p id="timer">Time remaining: ${this.getDuration()} seconds</p>
         `;
 
