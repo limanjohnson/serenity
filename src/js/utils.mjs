@@ -51,7 +51,7 @@ export function mobileMenuToggle() {
 }
 
 export function modalToggle() {
-  const modal = document.getElementById("journal-modal");
+  const modal = document.getElementById("modal-container");
   const openModal = document.getElementById("openModal");
   const closeModal = document.querySelector(".close");
 

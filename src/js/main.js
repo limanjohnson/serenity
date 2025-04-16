@@ -31,7 +31,8 @@ document.addEventListener("DOMContentLoaded", async() => {
       model: "gemini-2.0-flash",
       contents: "provide an inspiring quote that promotes healthy mental wellness and encourages self-care or emotional resilience?",
     });
-    console.log(response.text);
+    // console.log(response.text);
 
-    const zenQuote = document.querySelector("#upliftingQuote").innerHTML = response.text;
+    const zenQuote = document.querySelector("#upliftingQuote")
+    zenQuote.innerHTML = response.text;
 });

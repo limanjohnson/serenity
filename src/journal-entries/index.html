@@ -3,44 +3,38 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Journal Activity</title>
 
-    <!-- CSS -->
     <link rel="stylesheet" href="../css/style.css" />
 
-    <!-- JS -->
-    <script src="../js/reflection.js" type="module"></script>
-
-    <title>Reflection Activity</title>
+    <script src="../js/entries.js" type="module"></script>
   </head>
+
   <body>
     <header id="site-header"></header>
 
     <main>
       <div class="main-body-container">
         <div class="main-activities-container">
-          <div id="activities">
-            <h1>Reflect</h1>
-          </div>
-          <div>
-            <button id="openModal" class="activityButton">Click to begin</button>
-          </div>
+            <div id="activities">
+                <h1>Your Past Reflections</h1>
+            </div>
+            <div>
+                <ul id="journal-entries-list"></ul>
+            </div>
         </div>
         <div id="navigationMenu"></div>
       </div>
-
+      <!-- Modal -->
       <div id="modal-container" class="hidden modal">
         <!-- Modal Content -->
-        <div id="modal-content">
-          <h1>Reflect</h1>
-          <p>Select "Start" to begin the activity</p>
-          <div id="activity">
-            
-          </div>
-          <button class="start">Start</button>
-          <button class="close">End</button>
+        <div id="modal-content-journal">
+          <h1>Add Reflection</h1>
+          <textarea rows="10"></textarea>
+          <button class="save">Save</button>
+          <button class="close">Cancel</button>
         </div>
       </div>
-
     </main>
 
     <footer id="site-footer"></footer>

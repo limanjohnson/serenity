@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     navigationMenu();
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log("User is signed in:", user);
+        // console.log("User is signed in:", user);
 
       } else {
         // alert("You must be logged in to view this page.");

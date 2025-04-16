@@ -321,7 +321,23 @@ div#interactive-container {
   color: #bdb68e;
 }
 
+.activityButton {
+  margin: 1em 0;
+  width:100%;
+}
+
+/* Breathe Style */
+
+
+
+/* End Breate Styles */
+
 /* Journal */
+
+.activity-ui-container {
+  margin:1em 0;
+}
+
 /* Calendar Styles */
 .calendar-header {
   text-align: center;
@@ -367,9 +383,9 @@ div#interactive-container {
   border-radius: 5px;
   text-align: center;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+  display: grid;
+  grid-template-columns:1fr;
+  grid-template-rows: .2fr .2fr 1fr .2fr .2fr;
 
   position: relative;
   top: 50%;
@@ -378,6 +394,43 @@ div#interactive-container {
   width: 50%;
   height: 50%;
 }
+
+#modal-content button {
+  height:50%;
+}
+
+#modal-content-journal {
+  background:white;
+  padding:20px;
+  border-radius:5px;
+  text-align: center;
+
+  display:grid;
+  grid-template-columns: 1fr;
+  grid-template-rows:.2fr 1fr .2fr .2fr;
+
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 50%;
+}
+
+#journal-entries-list li {
+  list-style: none;
+  margin: 1em 0;
+  border: 2px solid purple;
+  padding: 1em;
+  border-radius: 5px;
+}
+
+#menuButton:focus {
+  outline:none;
+}
+
+
+
 
 /* End of Main CSS */
 
@@ -468,9 +521,18 @@ div#interactive-container {
     text-align: center;
   }
 
+  .activity-ui-container {
+    margin: 1em 0;
+  }
+
   /* journal */
   .activity-ui-container button {
-    margin-top: 1em;
+    width:100%;
+  }
+
+  .main-activities-container div a {
+    display:flex;
+    justify-content: center;
   }
 
   /* dashboard */

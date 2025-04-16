@@ -2,7 +2,7 @@ import { auth } from "./firebase.js";
 import {createUserWithEmailAndPassword} from "firebase/auth";
 import {signInWithEmailAndPassword} from "firebase/auth";
 import { signOut } from "firebase/auth";
-import { updateProfile } from "firebase/auth";
+import { updateProfile, onAuthStateChanged } from "firebase/auth";
 
 
 
@@ -108,11 +108,11 @@ async function handleSignup(email, password) {
       displayName: firstname_input.value,
     });
 
-    console.log("User signed up:", userCredential.user);
-    alert("Signup successful! You can now log in.");
+    // console.log("User signed up:", userCredential.user);
+    // alert("Signup successful! You can now log in.");
     window.location.href = "../login/index.html";
   } catch (error) {
-    console.error("Error signing up:", error.message);
+    // console.error("Error signing up:", error.message);
     alert(error.message);
   }
 }
@@ -121,11 +121,11 @@ async function handleSignup(email, password) {
 async function handleLogin(email, password) {
   try {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
-    console.log("User signed in:", userCredential.user);
+    // console.log("User signed in:", userCredential.user);
     // alert("Login successful!");
     window.location.href = "../index.html";
   } catch (error) {
-    console.error("Error signing in:", error.message);
+    // console.error("Error signing in:", error.message);
 
     // Map Firebase error codes to user-friendly messages
     let errorMessage = "Incorrect username or password.";
@@ -161,7 +161,7 @@ export function setupLogoutButton() {
            // alert("You have logged out successfully.");
            window.location.href = "../login/index.html";
          } catch (error) {
-           console.error("Error signing out:", error.message);
+          //  console.error("Error signing out:", error.message);
            alert("An error occurred while logging out. Please try again.");
          }
        });
