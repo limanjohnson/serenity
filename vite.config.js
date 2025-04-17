@@ -16,6 +16,7 @@ export default defineConfig({
         reflection: resolve(__dirname, "src/reflection/index.html"),
         login: resolve(__dirname, "src/login/index.html"),
         signup: resolve(__dirname, "src/signup/index.html"),
+        journalEntries: resolve(__dirname, "src/journal-entries/index.html"),
       },
     },
   },
