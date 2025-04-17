@@ -17,7 +17,13 @@ document.addEventListener("DOMContentLoaded", async() => {
         // console.log("User is signed in:", user);
         username.innerText = user.displayName;
 
-      } else {
+      }
+
+      if (user.metadata.lastSignInTime) {
+        const lastLoginDate = new Date(user.metadata.lastSignInTime);
+        lastLogin.innerText = `Last Login: ${lastLoginDate.toLocaleDateString()}`;
+      }
+      else {
         // alert("You must be logged in to view this page.");
         window.location.href = "../login/index.html";
       }
